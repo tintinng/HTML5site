@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* css reset 开始 */
+        html, body {height: 100%;overflow: hidden;}
+        html, body,h1,h2,h3,h4,h5,h6,p,ul,li{margin: 0px;padding: 0px;font: 14px "微软雅黑";}
+        a{text-decoration: none;display: block;}
+        li{list-style: none;}
+        img{display: block;}
+        /* css reset 结束 */
+
+        /* common css 开始 */
+        .clearfix{*zoom: 1;}
+        .clearfix::after{content: "";display: block;clear: both;}
+        /* common css 结束 */
+
+        /* 头部样式开始 */
+        #head {background: white !important;}
+        #head .headMain{width: 1250px; height: 100px;margin: 0 auto;position: relative;}
+        #head .headMain .logo {float: left; margin-top: 30px;}
+        #head .headMain .nav {float: right; margin-top: 75px;}
+        #head .headMain > .nav > .list > li {float: left; margin-left: 30px; position: relative;}
+        #head .headMain > .nav > .list > li > a > .up{width: 0; overflow: hidden; color: black; position: absolute; transition: 1s width;}
+        #head .headMain > .nav > .list > li:hover .up{width: 100%;}
+        #head .headMain > .arrow{width: 16px; height: 16px;background: url(./img/arrow.png);position: absolute;left: 50%;bottom: -13px;transition: 1s left;}
+        /* 头部样式结束 */
+
+        /* 内容样式开始 */
+        #content {height: 300px; background: gray;}
+        /* 内容样式结束 */
+
+    </style>
+</head>
+<body>
+    <section id="wrap">
+        <!-- 流体布局 -->
+        <header id="head">
+            <!-- 固定布局 -->
+            <div class="headMain">
+                <h1 class="logo">
+                    <a href="javascript:;">
+                        <img src="./img/logo1.png" style="height: 90px;width: 100px;">
+                    </a>
+                </h1>
+                <nav class="nav">
+                    <ul class="list">
+                        <li>
+                            <a href="javascript:;">
+                                <div class="up"><img src="./img/home1.png" style="height: 19.2px;width: 19.2px;"></div>
+                                <div class="down"><img src="./img/home2.png" style="height: 19.2px;width: 19.2px;"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <div class="up">Page1</div>
+                                <div class="down">Page1</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <div class="up">Page2</div>
+                                <div class="down">Page2</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <div class="up">Page3</div>
+                                <div class="down">Page3</div>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="arrow"></div>
+            </div>
+        </header>
+        <section id="content"></section>
+    </section>
+</body>
+<script>
+    window.onload = function() {
+        // 获取arrow元素
+        let arrowEl = document.querySelector("#head .headMain > .arrow")
+        // 获取li列表节点
+        let liNodes = document.querySelectorAll("#head .headMain > .nav > .list > li")
+        let upNodes = document.querySelectorAll("#head .headMain > .nav > .list > li .up")
+        let firstLiNode = liNodes[0]
+        upNodes[0].style.width = "100%"
+        arrowEl.style.left = firstLiNode.offsetLeft + firstLiNode.offsetWidth/2 - arrowEl.offsetWidth/2 + "px"
+
+        for(let i=0; i<liNodes.length; i++) {
+            liNodes[i].onclick = function() {
+                upNodes[i].style.width = "100%"
+                arrowEl.style.left = liNodes[i].offsetLeft + liNodes[i].offsetWidth/2 - arrowEl.offsetWidth/2 + "px"
+                for(let j=0; j<liNodes.length; j++) {
+                    if(i!==j) {
+                        // 不要设置为0，要设置为空
+                        upNodes[j].style.width = ""
+                    }
+                }
+            }
+        }
+    }
+</script>
+</html>
