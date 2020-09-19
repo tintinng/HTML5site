@@ -15,6 +15,7 @@
 			/*common css 开始*/
 			.clearfix{*zoom: 1;}
 			.clearfix:after{content: "";display: block;clear: both;}
+			.commonTitle{color:#009ee0;font-size: 80px;line-height: 0.8;font-weight: bold;letter-spacing: -5px;}
 			/*common css 结束*/
 			
 			/*头部样式 开始*/
@@ -32,18 +33,47 @@
 			
 			/*内容区样式 开始*/
 			#content{background: gray;position: relative;overflow: hidden;width: 100%;}
-			#content .list{position: absolute;left: 0;top:0;width: 100%;transition:1s top;}
-			#content .list > li{position: relative;background-position:50% 50%!important;}
-			#content .list > li > div{width: 1100px;height: 520px;background: pink;
+			#content > .list{position: absolute;left: 0;top:0;width: 100%;transition:1s top;}
+			#content > .list > li{position: relative;background-position:50% 50%!important;}
+			#content > .list > li > section{width: 1100px;height: 520px;
 									position: absolute;left: 0;right: 0;top: 0;bottom: 0;
 									margin: auto;
 									}
 									
-			#content .list > .home{background: url(img/bg1.jpg) no-repeat;}
-			#content .list > .course{background: url(img/bg2.jpg) no-repeat;}
-			#content .list > .works{background: url(img/bg3.jpg) no-repeat;}
-			#content .list > .about{background: url(img/bg4.jpg) no-repeat;}
-			#content .list > .team{background: url(img/bg5.jpg) no-repeat;}
+			#content > .list > .home{background: url(img/bg1.jpg) no-repeat;}
+			#content > .list > .course{background: url(img/bg2.jpg) no-repeat;}
+
+			#content > .list > .works{background: url(img/bg4.jpg) no-repeat;}
+			#content > .list > .works .works1{margin: 50px 0 100px 50px;}
+
+			#content > .list > .works .works2{margin: 50px;}
+			#content > .list > .works .works2 > .item{float: left;width: 220px;height: 133px;margin: 0 1px;position: relative;overflow: hidden;}
+			#content > .list > .works .works2 > .item:last-of-type{width: 332px;height: 133px;}
+			#content > .list > .works .works2 > .item .mask{position: absolute;left: 0;right: 0;top: 0;bottom: 0;background: #000000;opacity: 0;color: white;transition: 1s;}
+			#content > .list > .works .works2 > .item img{transition: 1s;}
+			#content > .list > .works .works2 > .item .mask .icon{width: 32px;height: 34px;background: violet;margin: 0 auto;margin-top: 10px;background: url(img/zoomico.png) no-repeat;transition: 1s;}
+			#content > .list > .works .works2 > .item .mask .icon:hover{background-position: 0 -35px;}
+			#content > .list > .works .works2 > .item:hover .mask{opacity: 0.6;}
+			#content > .list > .works .works2 > .item:hover img{transform: rotate(30deg) scale(1.5);}
+
+			#content > .list > .works .works3{position: absolute; width: 167px;height: 191px;background: url(./img/robot.png) no-repeat;left: 900px;top: 170px;animation: works3Move 5s linear infinite;}
+			@keyframes works3Move {
+				0%{
+
+				}
+				49%{
+					transform: translateX(-490px);
+				}
+				50%{
+					transform: translateX(-500px) rotateY(180deg);
+				}
+				100%{
+					transform: translateX(0) rotateY(180deg);
+				}
+			}
+
+			#content > .list > .about{background: url(img/bg3.jpg) no-repeat;}
+			#content > .list > .team{background: url(img/bg5.jpg) no-repeat;}
 			/*内容区样式 结束*/
 			
 		</style>
@@ -100,19 +130,56 @@
 			<section id="content">
 				<ul class="list">
 					<li class="home">
-						<div>home</div>
+						<section>home</section>
 					</li>
 					<li class="course">
-						<div>course</div>
+						<section>course</section>
 					</li>
 					<li class="works">
-						<div>works</div>
+						<section>
+							<header class="works1 commonTitle">
+								<span>EINBLICK</span><br>
+								<span>EINBLICK222</span><br>
+								<span>EINBLICK3333</span><br>
+							</header>
+							<div class="works2">
+								<div class="item">
+									<img src="img/worksimg1.jpg" alt="">
+									<div class="mask">
+										<span>我有一头小毛驴</span>
+										<div class="icon"></div>
+									</div>
+								</div>
+								<div class="item">
+									<img src="img/worksimg2.jpg" alt="">
+									<div class="mask">
+										<span>我从来都不骑</span>
+										<div class="icon"></div>
+									</div>
+								</div>
+								<div class="item">
+									<img src="img/worksimg3.jpg" alt="">
+									<div class="mask">
+										<span>突然一天心血来潮</span>
+										<div class="icon"></div>
+									</div>
+								</div>
+								<div class="item">
+									<img src="img/worksimg4.jpg" alt="">
+									<div class="mask">
+										<span>骑它去赶集</span>
+										<div class="icon"></div>
+									</div>
+								</div>
+							</div>
+							<div class="works3"></div>
+						</section>
 					</li>
 					<li class="about">
-						<div>about</div>
+						<section>about</section>
 					</li>
 					<li class="team">
-						<div>team</div>
+						<section>team</section>
 					</li>
 				</ul>
 			</section>
@@ -221,6 +288,7 @@
 					}
 				}
 			}
+			move(2)
 			//动画的核心函数
 			function move(index){
 				for(var i=0;i<upNodes.length;i++){
